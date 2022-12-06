@@ -20,6 +20,7 @@
 void* qagame;
 void* qagame_dllentry;
 
+qboolean skipFrameDispatcher;
 static void SetTag(void);
 
 void __cdecl My_Cmd_AddCommand(char* cmd, void* func) {
@@ -156,7 +157,9 @@ void __cdecl My_Com_Printf(char* fmt, ...) {
 }
 
 void __cdecl My_SV_SpawnServer(char* server, qboolean killBots) {
+    skipFrameDispatcher = qtrue;
     SV_SpawnServer(server, killBots);
+    skipFrameDispatcher = qfalse;
 
     // We call NewGameDispatcher here instead of G_InitGame when it's not just a map_restart,
     // otherwise configstring 0 and such won't be initialized and we can't instantiate minqlx.Game.
@@ -165,7 +168,11 @@ void __cdecl My_SV_SpawnServer(char* server, qboolean killBots) {
 
 void  __cdecl My_G_RunFrame(int time) {
     // Dropping frames is probably not a good idea, so we don't allow cancelling.
-    FrameDispatcher();
+
+    if (!skipFrameDispatcher) {
+        // Skip running frame hooks while game is not initialized
+        FrameDispatcher();
+    }
 
     G_RunFrame(time);
 }
