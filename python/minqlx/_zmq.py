@@ -40,7 +40,7 @@ class StatsListener():
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         if self.password:
-            self.socket.plain_username = b"stats"
+            self.socket.plain_username = b"stats_stats"
             self.socket.plain_password = self.password.encode()
         self.socket.zap_domain = b"stats"
         self.socket.connect(self.address)
