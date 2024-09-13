@@ -31,21 +31,21 @@ class StatsListener():
 
         stats = minqlx.get_cvar("zmq_stats_ip")
         port = minqlx.get_cvar("zmq_stats_port")
-        user_name = minqlx.get_cvar("qlx_zmq_stats_username")
-        domain = minqlx.get_cvar("qlx_zmq_stats_domain")
 
         if not port:
             port = minqlx.get_cvar("net_port")
         self.address = "tcp://{}:{}".format("127.0.0.1" if not stats else stats, port)
         self.password = minqlx.get_cvar("zmq_stats_password")
+        self.user_name = minqlx.get_cvar("qlx_zmq_stats_username")
+        self.domain = minqlx.get_cvar("qlx_zmq_stats_domain")
 
         # Initialize socket, connect, and subscribe.
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         if self.password:
-            self.socket.plain_username = user_name.encode()
+            self.socket.plain_username = self.user_name.encode()
             self.socket.plain_password = self.password.encode()
-        self.socket.zap_domain = domain.encode()
+        self.socket.zap_domain = self.domain.encode()
         self.socket.connect(self.address)
         self.socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
