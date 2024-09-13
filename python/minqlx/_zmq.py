@@ -38,6 +38,8 @@ class StatsListener():
         self.password = minqlx.get_cvar("zmq_stats_password")
         self.user_name = minqlx.get_cvar("qlx_zmq_stats_username")
         self.domain = minqlx.get_cvar("qlx_zmq_stats_domain")
+        minqlx.console_print("ZMQ stats address: {}".format(self.address))
+        minqlx.console_print("ZMQ stats domain: {}, username: {}, password: {}".format(self.domain, self.user_name, self.password))
 
         # Initialize socket, connect, and subscribe.
         self.context = zmq.Context()
