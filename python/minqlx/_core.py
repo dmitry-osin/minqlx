@@ -421,6 +421,10 @@ def initialize_cvars():
     minqlx.set_cvar_once("qlx_redisUnixSocket", "0")
     minqlx.set_cvar_once("qlx_redisPassword", "")
 
+    # Stats
+    minqlx.set_cvar_once("qlx_zmq_stats_username", "stats")
+    minqlx.set_cvar_once("qlx_zmq_stats_domain", "stats")
+
 
 # ====================================================================
 #                                 MAIN
