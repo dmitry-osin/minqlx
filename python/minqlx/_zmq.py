@@ -31,8 +31,8 @@ class StatsListener():
 
         stats = minqlx.get_cvar("zmq_stats_ip")
         port = minqlx.get_cvar("zmq_stats_port")
-        user_name = minqlx.get_cvar("zmq_stats_username")
-        domain = minqlx.get_cvar("zmq_stats_domain")
+        user_name = minqlx.get_cvar("qlx_zmq_stats_username")
+        domain = minqlx.get_cvar("qlx_zmq_stats_domain")
 
         if not port:
             port = minqlx.get_cvar("net_port")
