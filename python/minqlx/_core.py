@@ -424,6 +424,7 @@ def initialize_cvars():
     # Stats
     minqlx.set_cvar_once("qlx_zmq_stats_username", "stats")
     minqlx.set_cvar_once("qlx_zmq_stats_domain", "stats")
+    minqlx.set_cvar_once("qlx_zmq_stats_address", "127.0.0.1")
 
 
 # ====================================================================
