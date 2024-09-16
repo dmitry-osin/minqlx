@@ -41,5 +41,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            release.zip
+            bin/release.zip
             Release.txt
