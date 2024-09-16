@@ -29,10 +29,10 @@ jobs:
       - name: Generate release file
         run: echo ${{ github.sha }} > Release.txt
         
-      - name: zip
+      - name: Zip
         uses: montudor/action-zip@v1
         with: 
-          args: zip -qq -r ./release.zip bin/*
+          args: zip -qq -r release.zip bin/minqlx.zip bin/minqlx.x64.so bin/run_server_x64_minqlx.sh bin/run_server_x86_minqlx.sh
         
       - name: Release
         uses: softprops/action-gh-release@v2
